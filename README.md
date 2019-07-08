@@ -6,8 +6,10 @@ Observe different 2D fractals and increase or decrease depth.
     ```
     git clone https://github.com/Stefunga/Fractal
     ```
-  - ## Run jar file
-
+  - ## Run jar file 
+    ```
+    java -jar fractal.jar
+    ```
 
 # Using the program
 Select a type using the dropdown menu

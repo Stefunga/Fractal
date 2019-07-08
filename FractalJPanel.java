@@ -32,7 +32,23 @@ static void drawTree(Graphics g, int xA, int yA, double angle, int level) {//dra
   
     }
 }
+void drawTriangles(Graphics g, int xMid, int yMid, int radius, int level) {
+    // end recursion
+    if(level==0)
+    {
+	    g.drawLine(xMid, yMid, xMid+level, yMid+level);//draws new lines
+   		g.drawLine(xMid+level, yMid+level,xMid, yMid);//draws new lines
+    }
+    else
+    {
+    g.drawLine(yMid, yMid, (int)(xMid+(xMid*.5)),(int)(xMid+(xMid*.5)));//draws new lines
+    g.drawLine(yMid, yMid, (int)(xMid-(xMid*.5)),(int)(xMid+(xMid*.5)));//draws new lines
+    g.drawLine((int)(xMid+(xMid*.5)),(int)(xMid+(xMid*.5)), (int)(xMid-(xMid*.5)),(int)(xMid+(xMid*.5)));//draws new lines
 
+    drawTriangles(g, (int)(xMid*1.15), (int)(yMid*1.15), radius /2,level-1);
+//    drawTriangles(g, (int)(xMid*.85), (int)(yMid*85), radius /2,level-1);
+    }
+}
  void drawCircles(Graphics g, int xMid, int yMid, int radius, int level) {
 	    // end recursion
 	    if(level==0)
@@ -52,10 +68,19 @@ static void drawTree(Graphics g, int xA, int yA, double angle, int level) {//dra
  super.paintComponent( g );
 // draw fractal pattern
 g.setColor( color );
-drawTree(g, 700, 800, -90, level);
-drawTree(g, 100, 800, -90, level);
+if(Fractal.Triangle==true)
+{
+	drawTriangles(g,400,400, -90, level);
+}
+if(Fractal.Tree==true)
+{
+	drawTree(g,400,800, -90, level);
+}
 //drawFractal( level, 100, 90, 290, 200, g );
-drawCircles(g,400,400,200,level);
+if(Fractal.Circle==true)
+{
+	drawCircles(g,400,400,200,level);
+}
  } // end method paintComponent
 public void setColor( Color c )//sets the color
 {

@@ -8,12 +8,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
 //this class sets up the frame and levels of recursion, color of lines
 public class Fractal extends JFrame
 {
 	private static final int WIDTH = 800; // define width of GUI
 	private static final int HEIGHT = 880; // define height of GUI
-	private static final int MIN_LEVEL = 0, MAX_LEVEL = 5;
+	static boolean Tree = true; // define width of GUI    
+	static boolean Circle = false; // define width of GUI
+	static boolean Triangle = false; // define width of GUI
+	private static final int MIN_LEVEL = 0, MAX_LEVEL = 10;    
 	private JButton changeColorJButton, increaseLevelJButton,decreaseLevelJButton;
 	
 	private JLabel levelJLabel;
@@ -28,6 +32,46 @@ public class Fractal extends JFrame
 	controlJPanel.setLayout( new FlowLayout() );
  // set up color button
 	changeColorJButton = new JButton( "Color" );
+	String[] petStrings = { "Tree", "Circle"};
+
+	//Create the combo box, select item at index 4.
+	//Indices start at 0, so 4 specifies the pig.
+	JComboBox petList = new JComboBox(petStrings);
+	petList.setSelectedIndex(0);
+	petList.addActionListener(new ActionListener()//action listener for button
+			 {
+		 //change color setup
+					 public void actionPerformed( ActionEvent event )
+					 {
+					       String x = petList.getSelectedItem().toString();
+					       if(x=="Triangle")
+					       {
+					    	 Circle = false;
+					    	 Tree = false;
+					    	 Triangle = true;
+					    	 drawSpace.setLevel(0);
+					    	 reload(0);
+					       }
+					       if(x=="Tree")
+					       {
+					    	 Circle = false;
+					    	 Tree = true;
+					    	 Triangle = false;
+					    	 drawSpace.setLevel(0);
+					    	 reload(0);
+					       }
+					       else if(x=="Circle")
+					       {					
+					    	  Circle = true;
+					    	  Tree = false;
+						      Triangle = false;
+
+					    	  drawSpace.setLevel(0);
+					    	  reload(0);
+					       }    
+		 			} 
+			 }
+				 ); // end addActionLi
 	controlJPanel.add( changeColorJButton );
 	changeColorJButton.addActionListener(
 		 new ActionListener()//action listener for button
@@ -46,25 +90,22 @@ public class Fractal extends JFrame
 		 ); // end addActionListener
 
 decreaseLevelJButton = new JButton( "Decrease Level" );//button to decrease the level
+controlJPanel.add(petList);
 controlJPanel.add( decreaseLevelJButton );
 decreaseLevelJButton.addActionListener(
 new ActionListener() // anonymous inner class
 {
  public void actionPerformed( ActionEvent event )
  {
-	 int level = drawSpace.getLevel();//gets current level
-	 --level; // decrease level by one
- if ( ( level >= MIN_LEVEL )  &&
- ( level <= MAX_LEVEL ) )
- {
-	levelJLabel.setText( "Level: " + level );
-	drawSpace.setLevel( level );
-	repaint();
+	 int level = drawSpace.getLevel();
 
- } // end if
+	 --level; // increase level by one
+	 reload(level);
  } 
  }
  ); // end addActionListener
+
+	
 
 increaseLevelJButton = new JButton( "Increase Level" );//adds increase level button
 controlJPanel.add( increaseLevelJButton );
@@ -74,22 +115,12 @@ increaseLevelJButton.addActionListener(
  // process increaseLevelJButton event
  public void actionPerformed( ActionEvent event )
 
+ 
  {
+
 	 int level = drawSpace.getLevel();
-
 	 ++level; // increase level by one
-
-
- if ( ( level >= MIN_LEVEL )  &&
- ( level <= MAX_LEVEL ) )
-{
-
-	levelJLabel.setText( "Level: " + level );
-
-	drawSpace.setLevel( level );
-
-	repaint();
-} 
+	 reload(level);
  } 
  } 
 
@@ -104,7 +135,21 @@ drawSpace = new FractalJPanel( 0 );
  add( mainJPanel ); // add JPanel to JFrame
  setSize( WIDTH, HEIGHT ); // set size of JFrame
  setVisible( true ); // display JFrame
+}
+ public void reload(int level)
+ {
+
+ if ( ( level >= MIN_LEVEL )  &&
+ ( level <= MAX_LEVEL ) )
+{
+
+	levelJLabel.setText( "Level: " + level );
+
+	drawSpace.setLevel( level );
+
+	repaint();
 } 
+ }
 public static void main( String[] args )
  {
  Fractal demo = new Fractal();//runs 

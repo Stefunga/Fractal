@@ -10,3 +10,11 @@ Observe different 2D fractals and increase or decrease depth.
 
 
 # Using the program
+Tree Fractal
+
+![alt text](https://github.com/Stefunga/Fractal/blob/master/Screen%20Shot%202019-07-08%20at%205.06.01%20PM.png)
+
+Circle Fractal
+
+![alt text](https://github.com/Stefunga/Fractal/blob/master/Screen%20Shot%202019-07-08%20at%205.06.14%20PM.png)
+

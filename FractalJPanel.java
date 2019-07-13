@@ -41,12 +41,14 @@ void drawTriangles(Graphics g, int xMid, int yMid, int radius, int level) {
     }
     else
     {
-    g.drawLine(yMid, yMid, (int)(xMid+(xMid*.5)),(int)(xMid+(xMid*.5)));//draws new lines
-    g.drawLine(yMid, yMid, (int)(xMid-(xMid*.5)),(int)(xMid+(xMid*.5)));//draws new lines
-    g.drawLine((int)(xMid+(xMid*.5)),(int)(xMid+(xMid*.5)), (int)(xMid-(xMid*.5)),(int)(xMid+(xMid*.5)));//draws new lines
-
-    drawTriangles(g, (int)(xMid*1.15), (int)(yMid*1.15), radius /2,level-1);
-//    drawTriangles(g, (int)(xMid*.85), (int)(yMid*85), radius /2,level-1);
+    g.drawLine(xMid, yMid,xMid+radius, yMid-radius);//draws new lines
+    g.drawLine(xMid-radius, yMid-radius,xMid+radius, yMid-radius);//draws new lines
+    g.drawLine(xMid-radius, yMid-radius,xMid, yMid);//draws new lines
+   
+    drawTriangles(g, (int)(xMid+radius/2), (int)(yMid-radius/2), radius /2,level-1);
+    drawTriangles(g, (int)(xMid-radius/2), (int)(yMid-radius/2), radius /2,level-1);
+    drawTriangles(g, (int)(xMid), (int)(yMid), radius /2,level-1);
+    
     }
 }
  void drawCircles(Graphics g, int xMid, int yMid, int radius, int level) {
@@ -70,7 +72,7 @@ void drawTriangles(Graphics g, int xMid, int yMid, int radius, int level) {
 g.setColor( color );
 if(Fractal.Triangle==true)
 {
-	drawTriangles(g,400,400, -90, level);
+	drawTriangles(g,400,100, -400, level);
 }
 if(Fractal.Tree==true)
 {

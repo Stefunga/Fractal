@@ -32,7 +32,7 @@ public class Fractal extends JFrame
 	controlJPanel.setLayout( new FlowLayout() );
  // set up color button
 	changeColorJButton = new JButton( "Color" );
-	String[] petStrings = { "Tree", "Circle"};
+	String[] petStrings = { "Tree", "Circle","Sierpiński triangle"};
 
 	//Create the combo box, select item at index 4.
 	//Indices start at 0, so 4 specifies the pig.
@@ -44,7 +44,7 @@ public class Fractal extends JFrame
 					 public void actionPerformed( ActionEvent event )
 					 {
 					       String x = petList.getSelectedItem().toString();
-					       if(x=="Triangle")
+					       if(x=="Sierpiński triangle")
 					       {
 					    	 Circle = false;
 					    	 Tree = false;

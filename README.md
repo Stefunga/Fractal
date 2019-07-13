@@ -22,4 +22,6 @@ Circle Fractal
 
 ![alt text](https://github.com/Stefunga/Fractal/blob/master/Screen%20Shot%202019-07-08%20at%205.06.14%20PM.png)
 
-Increase or decrease depth.
+Sierpiński triangle
+
+![alt text](https://github.com/Stefunga/Fractal/blob/master/Screen%20Shot%202019-07-13%20at%201.21.57%20PM.png)

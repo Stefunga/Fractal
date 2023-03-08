@@ -1,4 +1,5 @@
 package finalFractal;
+
 //this part of the program draws and calculates the fractals
 import java.awt.Graphics;
 import java.awt.Graphics2D;
